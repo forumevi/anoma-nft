@@ -4,7 +4,8 @@ export default function NFTCard({ nft, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="bg-white rounded-2xl overflow-hidden shadow-xl transform transition duration-300 hover:shadow-2xl hover:scale-105 cursor-pointer group"
+      className="bg-white rounded-2xl overflow-hidden shadow-xl transform transition duration-300 
+                 hover:shadow-2xl hover:scale-105 hover:ring-2 hover:ring-indigo-400 cursor-pointer group"
     >
       <div className="relative overflow-hidden">
         <img
