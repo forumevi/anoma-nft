@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function NFTDetailModal({ nft, onClose }) {
   const [status, setStatus] = useState('');
@@ -16,7 +17,12 @@ export default function NFTDetailModal({ nft, onClose }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-2xl p-6 w-96 relative shadow-2xl">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        className="bg-white rounded-2xl p-6 w-96 relative shadow-2xl"
+      >
         <button className="absolute top-2 right-2 text-gray-600 hover:text-gray-900" onClick={onClose}>
           ✖
         </button>
@@ -39,7 +45,7 @@ export default function NFTDetailModal({ nft, onClose }) {
         </button>
 
         {status && <p className="mt-3 font-medium text-center">{status}</p>}
-      </div>
+      </motion.div>
     </div>
   );
 }
