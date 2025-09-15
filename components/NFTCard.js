@@ -8,7 +8,7 @@ export default function NFTCard({ nft }) {
   return (
     <>
       <div 
-        className="bg-gradient-to-r from-indigo-800 via-purple-900 to-indigo-800 rounded-2xl p-4 cursor-pointer hover:scale-105 transform transition shadow-lg"
+        className="bg-gradient-to-r from-indigo-800 via-purple-900 to-indigo-800 rounded-2xl p-4 cursor-pointer hover:scale-105 transform transition shadow-lg hover:shadow-xl"
         onClick={() => setShowModal(true)}
       >
         <img src={nft.image} alt={nft.name} className="rounded-lg mb-4" />
