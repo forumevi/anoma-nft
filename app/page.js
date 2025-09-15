@@ -5,26 +5,25 @@ import Navbar from '../components/Navbar';
 
 export default function Page() {
   const demoNFTs = [
-    { id: 1, name: 'Anoma NFT #1', owner: '0x123...', price: 0.5, image: '/images/nft1.png' },
-    { id: 2, name: 'Anoma NFT #2', owner: '0xabc...', price: 1.2, image: '/images/nft2.png' },
+    { id: 1, name: 'Anoma NFT #1', owner: '0x123...', price: 0.5, image: '/images/nft1.png', badge: 'New' },
+    { id: 2, name: 'Anoma NFT #2', owner: '0xabc...', price: 1.2, image: '/images/nft2.png', badge: 'Hot' },
     { id: 3, name: 'Anoma NFT #3', owner: '0xdef...', price: 0.8, image: '/images/nft3.png' },
-    { id: 4, name: 'Anoma NFT #4', owner: '0x456...', price: 0.6, image: '/images/nft4.png' },
+    { id: 4, name: 'Anoma NFT #4', owner: '0x456...', price: 0.6, image: '/images/nft4.png', badge: 'Limited' },
     { id: 5, name: 'Anoma NFT #5', owner: '0x789...', price: 1.0, image: '/images/nft5.png' },
-    { id: 6, name: 'Anoma NFT #6', owner: '0xaaa...', price: 2.0, image: '/images/nft6.png' },
+    { id: 6, name: 'Anoma NFT #6', owner: '0xaaa...', price: 2.0, image: '/images/nft6.png', badge: 'Hot' },
   ];
 
   const [filter, setFilter] = useState('all');
 
   const filteredNFTs = demoNFTs.filter((nft) => {
     if (filter === 'all') return true;
-    if (filter === 'owned') return nft.owner.toLowerCase().startsWith('0x1'); // örnek
+    if (filter === 'owned') return nft.owner.toLowerCase().startsWith('0x1'); 
     if (filter === 'high') return nft.price > 1;
     return true;
   });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-purple-800 to-indigo-700 text-white relative overflow-hidden">
-      {/* Overlay Glow */}
       <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 via-purple-900 to-indigo-800 opacity-20 pointer-events-none"></div>
 
       <Navbar onFilter={setFilter} />
