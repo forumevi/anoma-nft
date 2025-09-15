@@ -1,5 +1,4 @@
 'use client';
-
 export default function FeatureCard({ title, description, icon }) {
   return (
     <div className="bg-gradient-to-r from-indigo-800 via-purple-900 to-indigo-800 p-6 rounded-2xl shadow-xl flex flex-col items-center text-center hover:scale-105 transform transition">
