@@ -4,9 +4,15 @@ export default function NFTCard({ nft, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300 cursor-pointer"
+      className="bg-white rounded-2xl overflow-hidden shadow-xl transform transition duration-300 hover:shadow-2xl hover:scale-105 cursor-pointer group"
     >
-      <img src={nft.image} alt={nft.name} className="w-full h-64 object-cover" />
+      <div className="relative overflow-hidden">
+        <img
+          src={nft.image}
+          alt={nft.name}
+          className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
       <div className="p-4 bg-gray-50">
         <h3 className="text-lg font-bold truncate">{nft.name}</h3>
         <p className="text-gray-500 truncate">Owner: {nft.owner}</p>
