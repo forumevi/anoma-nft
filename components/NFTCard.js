@@ -11,6 +11,11 @@ export default function NFTCard({ nft, onClick }) {
         <h3 className="text-lg font-bold truncate">{nft.name}</h3>
         <p className="text-sm text-gray-500 truncate">Owner: {nft.owner}</p>
         <p className="text-sm font-semibold">{nft.price}</p>
+        <button
+          className="mt-2 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+        >
+          Create Intent
+        </button>
       </div>
     </div>
   );
