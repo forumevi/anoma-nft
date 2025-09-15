@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import NFTGrid from '../components/NFTGrid';
 import Navbar from '../components/Navbar';
+import FeatureCard from '../components/FeatureCard';
 
 export default function Page() {
   const demoNFTs = [
@@ -59,6 +60,28 @@ export default function Page() {
 
         {/* NFT Grid */}
         <NFTGrid nfts={filteredNFTs} />
+
+        {/* Feature Section */}
+        <div className="mt-16 mb-12 text-center">
+          <h2 className="text-3xl font-bold mb-8">Why Anoma?</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <FeatureCard 
+              title="Cross-Chain Compatibility" 
+              description="Seamlessly interact with multiple blockchains within the Anoma ecosystem." 
+              icon="🌐"
+            />
+            <FeatureCard 
+              title="Intent-Based Transactions" 
+              description="Create, track, and execute user intents efficiently on-chain." 
+              icon="⚡"
+            />
+            <FeatureCard 
+              title="Secure & Decentralized" 
+              description="Enjoy fully decentralized NFT interactions with maximum security." 
+              icon="🔒"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
