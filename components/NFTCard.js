@@ -1,34 +1,23 @@
 'use client';
+import { useState } from 'react';
+import NFTDetailModal from './NFTDetailModal';
 
-export default function NFTCard({ nft, onClick }) {
+export default function NFTCard({ nft }) {
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <div
-      onClick={onClick}
-      className="bg-white rounded-2xl overflow-hidden shadow-xl transform transition duration-300 
-                 hover:shadow-2xl hover:scale-105 hover:ring-2 hover:ring-indigo-400 cursor-pointer group relative"
-    >
-      {/* Badge */}
-      {nft.badge && (
-        <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-          {nft.badge}
-        </span>
-      )}
-
-      <div className="relative overflow-hidden">
-        <img
-          src={nft.image}
-          alt={nft.name}
-          className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+    <>
+      <div 
+        className="bg-gradient-to-r from-indigo-800 via-purple-900 to-indigo-800 rounded-2xl p-4 cursor-pointer hover:scale-105 transform transition shadow-lg"
+        onClick={() => setShowModal(true)}
+      >
+        <img src={nft.image} alt={nft.name} className="rounded-lg mb-4" />
+        <h3 className="text-xl font-bold">{nft.name}</h3>
+        <p className="text-gray-300">Owner: {nft.owner}</p>
+        <p className="text-gray-200 font-semibold">Price: {nft.price} ETH</p>
+        {nft.badge && <span className="inline-block bg-blue-500 px-2 py-1 text-xs rounded mt-2">{nft.badge}</span>}
       </div>
-      <div className="p-4 bg-gray-50">
-        <h3 className="text-lg font-bold truncate">{nft.name}</h3>
-        <p className="text-gray-500 truncate">Owner: {nft.owner}</p>
-        <p className="font-semibold">{nft.price} ETH</p>
-        <button className="mt-2 w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-2 rounded-lg hover:scale-105 transition">
-          Create Intent
-        </button>
-      </div>
-    </div>
+      {showModal && <NFTDetailModal nft={nft} onClose={() => setShowModal(false)} />}
+    </>
   );
 }
