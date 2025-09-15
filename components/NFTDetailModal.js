@@ -1,51 +1,32 @@
 'use client';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 
 export default function NFTDetailModal({ nft, onClose }) {
   const [status, setStatus] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const createIntent = () => {
-    setLoading(true);
     setStatus('Pending...');
-    setTimeout(() => {
-      setLoading(false);
-      setStatus(Math.random() > 0.2 ? 'Executed ✅' : 'Failed ❌');
-    }, 1500);
+    setTimeout(() => setStatus(Math.random() > 0.2 ? 'Executed ✅' : 'Failed ❌'), 1500);
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8 }}
-        className="bg-white rounded-2xl p-6 w-96 relative shadow-2xl"
-      >
-        <button className="absolute top-2 right-2 text-gray-600 hover:text-gray-900" onClick={onClose}>
+      <div className="bg-white rounded-lg p-6 w-96 relative">
+        <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800" onClick={onClose}>
           ✖
         </button>
-
-        <img src={nft.image} alt={nft.name} className="rounded-md mb-4 w-full h-80 object-cover" />
-
+        <img src={nft.image} alt={nft.name} className="rounded-md mb-4" />
         <h2 className="text-xl font-bold mb-2">{nft.name}</h2>
-        <p className="mb-2 text-gray-600">Owner: {nft.owner}</p>
-        <p className="mb-4 font-semibold">{nft.price}</p>
-
+        <p className="mb-2">Owner: {nft.owner}</p>
+        <p className="mb-4 font-semibold">Price: {nft.price} ETH</p>
         <button
-          className={`relative w-full py-3 rounded-lg text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:scale-105 transition-transform flex items-center justify-center`}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           onClick={createIntent}
-          disabled={loading}
         >
-          {loading && (
-            <span className="absolute left-4 w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-          )}
-          {loading ? 'Creating...' : 'Create Intent'}
+          Create Intent
         </button>
-
-        {status && <p className="mt-3 font-medium text-center">{status}</p>}
-      </motion.div>
+        {status && <p className="mt-3 font-medium">Status: {status}</p>}
+      </div>
     </div>
   );
 }
