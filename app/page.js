@@ -12,9 +12,18 @@ export default function Page() {
   ];
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">Anoma NFT Koleksiyonu</h1>
-      <NFTGrid nfts={demoNFTs} />
+    <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-purple-800 to-indigo-700 text-white">
+      <div className="container mx-auto p-6">
+        <div className="text-center mb-8">
+          <img src="/logo.png" alt="Anoma" className="mx-auto w-32" />
+          <h1 className="text-4xl font-bold mt-4">Anoma NFT Koleksiyonu</h1>
+          <p className="mt-2 text-gray-200">
+            Explore NFTs and create intents on the Anoma blockchain.
+          </p>
+        </div>
+
+        <NFTGrid nfts={demoNFTs} />
+      </div>
     </div>
   );
 }
