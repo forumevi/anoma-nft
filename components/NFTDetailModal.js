@@ -1,12 +1,17 @@
 'use client';
 import { useState } from 'react';
 
-export default function NFTDetailModal({ nft, onClose }) {
-  const [status, setStatus] = useState('');
+export default function NFTDetailModal({ nft, onClose, lastIntent }) {
+  const [intentHistory, setIntentHistory] = useState([]);
 
   const createIntent = () => {
-    setStatus('Pending...');
-    setTimeout(() => setStatus(Math.random() > 0.2 ? 'Executed ✅' : 'Failed ❌'), 1500);
+    const newIntent = { status: 'Pending...', time: new Date().toLocaleTimeString() };
+    setIntentHistory([newIntent, ...intentHistory]);
+    setTimeout(() => {
+      const success = Math.random() > 0.2;
+      newIntent.status = success ? 'Executed ✅' : 'Failed ❌';
+      setIntentHistory([...intentHistory]);
+    }, 1500);
   };
 
   return (
@@ -20,7 +25,12 @@ export default function NFTDetailModal({ nft, onClose }) {
         <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition" onClick={createIntent}>
           Create Intent
         </button>
-        {status && <p className="mt-3 font-medium">{status}</p>}
+        <div className="mt-4 max-h-40 overflow-y-auto">
+          {intentHistory.map((intent, i) => (
+            <p key={i} className="text-sm">{intent.time}: {intent.status}</p>
+          ))}
+        </div>
+        {lastIntent && <p className="mt-2 font-medium">Last Intent: {lastIntent}</p>}
       </div>
     </div>
   );
