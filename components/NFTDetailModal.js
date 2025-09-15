@@ -11,19 +11,19 @@ export default function NFTDetailModal({ nft, onClose }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-96 relative">
-        <button className="absolute top-2 right-2" onClick={onClose}>✖</button>
+      <div className="bg-white rounded-2xl p-6 w-96 relative shadow-2xl">
+        <button className="absolute top-2 right-2 text-gray-600 hover:text-gray-900" onClick={onClose}>✖</button>
         <img src={nft.image} alt={nft.name} className="rounded-md mb-4 w-full h-80 object-cover" />
         <h2 className="text-xl font-bold mb-2">{nft.name}</h2>
-        <p className="mb-2">Owner: {nft.owner}</p>
-        <p className="mb-4 font-semibold">Price: {nft.price}</p>
+        <p className="mb-2 text-gray-600">Owner: {nft.owner}</p>
+        <p className="mb-4 font-semibold">{nft.price}</p>
         <button
-          className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-3 rounded-lg hover:scale-105 transition-transform"
+          className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-3 rounded-lg hover:scale-105 transition-transform w-full"
           onClick={createIntent}
         >
           Create Intent
         </button>
-        {status && <p className="mt-3 font-medium">Status: {status}</p>}
+        {status && <p className="mt-3 font-medium">{status}</p>}
       </div>
     </div>
   );
