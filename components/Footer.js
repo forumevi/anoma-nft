@@ -14,3 +14,7 @@ export default function Footer() {
           <a href="https://discord.gg/anoma" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">💬</a>
           <a href="https://github.com/anoma" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">💻</a>
         </div>
+      </div>
+    </footer>
+  );
+}
