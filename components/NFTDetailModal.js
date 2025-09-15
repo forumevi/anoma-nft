@@ -1,19 +1,5 @@
 'use client';
-import { useState } from 'react';
-
-export default function NFTDetailModal({ nft, onClose, lastIntent }) {
-  const [intentHistory, setIntentHistory] = useState([]);
-
-  const createIntent = () => {
-    const newIntent = { status: 'Pending...', time: new Date().toLocaleTimeString() };
-    setIntentHistory([newIntent, ...intentHistory]);
-    setTimeout(() => {
-      const success = Math.random() > 0.2;
-      newIntent.status = success ? 'Executed ✅' : 'Failed ❌';
-      setIntentHistory([...intentHistory]);
-    }, 1500);
-  };
-
+export default function NFTDetailModal({ nft, intents, onClose, createIntent }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-96 relative shadow-2xl animate-fadeIn">
@@ -22,15 +8,28 @@ export default function NFTDetailModal({ nft, onClose, lastIntent }) {
         <h2 className="text-xl font-bold mb-2">{nft.name}</h2>
         <p className="mb-2">Owner: {nft.owner}</p>
         <p className="mb-4 font-semibold">Price: {nft.price} ETH</p>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition" onClick={createIntent}>
-          Create Intent
-        </button>
-        <div className="mt-4 max-h-40 overflow-y-auto">
-          {intentHistory.map((intent, i) => (
-            <p key={i} className="text-sm">{intent.time}: {intent.status}</p>
+
+        <div className="flex justify-between">
+          {['ethereum','polygon','optimism'].map(chain => (
+            <button
+              key={chain}
+              className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 transition"
+              onClick={() => createIntent(chain)}
+            >
+              Create Intent on {chain}
+            </button>
           ))}
         </div>
-        {lastIntent && <p className="mt-2 font-medium">Last Intent: {lastIntent}</p>}
+
+        <div className="mt-4 max-h-48 overflow-y-auto">
+          {Object.entries(intents).map(([chain, arr]) =>
+            arr.map((intent, i) => (
+              <p key={`${chain}-${i}`} className="text-sm">
+                {chain.toUpperCase()} | {intent.time}: {intent.status}
+              </p>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
