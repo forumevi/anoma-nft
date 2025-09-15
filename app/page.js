@@ -17,26 +17,47 @@ export default function Page() {
 
   const filteredNFTs = demoNFTs.filter((nft) => {
     if (filter === 'all') return true;
-    if (filter === 'owned') return nft.owner.toLowerCase().startsWith('0x1'); 
+    if (filter === 'owned') return nft.owner.toLowerCase().startsWith('0x1');
     if (filter === 'high') return nft.price > 1;
     return true;
   });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-purple-800 to-indigo-700 text-white relative overflow-hidden">
+      {/* Background Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 via-purple-900 to-indigo-800 opacity-20 pointer-events-none"></div>
 
+      {/* Navbar */}
       <Navbar onFilter={setFilter} />
 
       <div className="container mx-auto p-6 relative z-10">
-        <div className="text-center mb-8">
-          <img src="/logo.png" alt="Anoma" className="mx-auto w-32" />
-          <h1 className="text-4xl font-bold mt-4">Anoma NFT Koleksiyonu</h1>
-          <p className="mt-2 text-gray-200">
-            Explore NFTs and create intents on the Anoma blockchain.
+        {/* Hero Section */}
+        <div className="text-center mb-12 relative z-10">
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-800 via-purple-900 to-indigo-800 opacity-30 rounded-xl -z-10"></div>
+          
+          {/* Logo */}
+          <img src="/logo.png" alt="Anoma" className="mx-auto w-32 mb-4" />
+
+          {/* Title */}
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4">
+            Explore the Anoma NFT Universe
+          </h1>
+
+          {/* Slogan */}
+          <p className="text-xl md:text-2xl text-gray-200 mb-6">
+            Dive into NFTs, create intents, and experience a cross-chain blockchain ecosystem.
           </p>
+
+          {/* CTA Button */}
+          <button
+            onClick={() => window.scrollTo({ top: 700, behavior: 'smooth' })}
+            className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:scale-105 transition"
+          >
+            Explore NFTs
+          </button>
         </div>
 
+        {/* NFT Grid */}
         <NFTGrid nfts={filteredNFTs} />
       </div>
     </div>
