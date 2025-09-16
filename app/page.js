@@ -6,18 +6,42 @@ import FeatureCard from '../components/FeatureCard';
 import Footer from '../components/Footer';
 import { getNfts } from '../lib/api';
 
+// Fallback: API çalışmazsa gösterilecek statik NFT’ler
+const FALLBACK_NFTS = [
+  { id: 1, name: 'Anoma NFT #1', owner: '0x123...', price: 0.5, image: '/images/nft1.png', intents: { ethereum: [], polygon: [], optimism: [] } },
+  { id: 2, name: 'Anoma NFT #2', owner: '0xabc...', price: 1.2, image: '/images/nft2.png', intents: { ethereum: [], polygon: [], optimism: [] } },
+  { id: 3, name: 'Anoma NFT #3', owner: '0xdef...', price: 0.8, image: '/images/nft3.png', intents: { ethereum: [], polygon: [], optimism: [] } },
+  { id: 4, name: 'Anoma NFT #4', owner: '0x456...', price: 0.6, image: '/images/nft4.png', intents: { ethereum: [], polygon: [], optimism: [] } },
+  { id: 5, name: 'Anoma NFT #5', owner: '0x789...', price: 1.0, image: '/images/nft5.png', intents: { ethereum: [], polygon: [], optimism: [] } },
+  { id: 6, name: 'Anoma NFT #6', owner: '0xaaa...', price: 2.0, image: '/images/nft6.png', intents: { ethereum: [], polygon: [], optimism: [] } },
+];
+
 export default function Page() {
-  const [nfts, setNfts] = useState([]);
+  const [nfts, setNfts] = useState(FALLBACK_NFTS); // Başlangıçta fallback göster
   const [filter, setFilter] = useState('all');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const loadNfts = async () => {
+      try {
+        console.log('🔍 Fetching NFTs from API...');
+        const data = await getNfts();
+        console.log('✅ API Response:', data);
+        if (Array.isArray(data)) {
+          setNfts(data);
+        } else {
+          console.warn('⚠️ API did not return an array — using fallback.');
+        }
+      } catch (error) {
+        console.error('❌ API Error:', error);
+        // Hata olursa fallback NFT’ler kalır — sayfa boş kalmaz
+      } finally {
+        setLoading(false);
+      }
+    };
+
     loadNfts();
   }, []);
-
-  const loadNfts = async () => {
-    const data = await getNfts();
-    setNfts(data);
-  };
 
   const filteredNFTs = nfts.filter((nft) => {
     if (filter === 'all') return true;
@@ -50,7 +74,11 @@ export default function Page() {
           </button>
         </div>
 
-        <NFTGrid nfts={filteredNFTs} />
+        {loading ? (
+          <div className="text-center py-10">Loading NFTs...</div>
+        ) : (
+          <NFTGrid nfts={filteredNFTs} />
+        )}
 
         <div className="mt-16 mb-12 text-center">
           <h2 className="text-3xl font-bold mb-8">Why Anoma?</h2>
