@@ -53,11 +53,11 @@ Just intent → execution.
 
 ---
 
-## 🤝 Built by Real Anoma Army
+## 🤝 Built by Anoma Real Army Cohort
 
 This is not just a demo — it’s a manifesto for user-first, intent-driven Web3.
 
-> **Team Real Anoma Army** believes in a future where blockchain complexity vanishes — and users reign supreme.
+> **Team Anoma Real Army** believes in a future where blockchain complexity vanishes — and users reign supreme.
 
 ---
 
@@ -83,4 +83,4 @@ It will automatically appear in:
 ---
 
 > “The best intent-based solutions don’t just solve problems — they anticipate needs.”  
-> — Real Anoma Army
+> — Anoma Real Army
