@@ -1,5 +1,5 @@
 # 🎨 Anoma Intent-NFT Engine  
-> **Built by Real Anoma Army Cohort — Where Intent Meets Execution.**
+> **Built by Anoma Real Army Cohort — Where Intent Meets Execution.**
 > 
 
 > _“Express your intent. We handle the rest — across chains, wallets, and complexity.”_
