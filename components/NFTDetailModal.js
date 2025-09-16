@@ -24,7 +24,11 @@ export default function NFTDetailModal({ nft, intents, onClose, createIntent }) 
         <div className="mt-4 max-h-48 overflow-y-auto">
           {Object.entries(intents).map(([chain, arr]) =>
             arr.map((intent, i) => (
-              <p key={`${chain}-${i}`} className="text-sm">
+              <p key={`${chain}-${i}`} className={`text-sm font-medium ${
+                intent.status.includes('✅') ? 'text-green-600' :
+                intent.status.includes('❌') ? 'text-red-600' :
+                'text-yellow-600'
+              }`}>
                 {chain.toUpperCase()} | {intent.time}: {intent.status}
               </p>
             ))
