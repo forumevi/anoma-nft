@@ -38,7 +38,15 @@ export default function NFTCard({ nft }) {
         <p className="text-gray-300">Owner: {nft.owner}</p>
         <p className="text-gray-200 font-semibold">Price: {nft.price} ETH</p>
         <p className="mt-2 text-sm text-gray-400">Total Intents: {totalIntents}</p>
-        {lastIntent && <p className="text-sm mt-1">{lastIntent}</p>}
+        {lastIntent && (
+          <p className={`text-sm mt-1 font-medium ${
+            lastIntent.includes('✅') ? 'text-green-300' :
+            lastIntent.includes('❌') ? 'text-red-300' :
+            'text-yellow-300'
+          }`}>
+            {lastIntent}
+          </p>
+        )}
         <button
           className="mt-3 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
           onClick={(e) => { e.stopPropagation(); createIntent(); }}
