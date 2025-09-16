@@ -4,8 +4,6 @@ import { Command } from 'commander';
 import { create } from 'ipfs-http-client';
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { AnomaClient } from '@anoma/cli';
-import { TxNftMint } from '@anoma/types';
 import fs from 'fs';
 import path from 'path';
 
@@ -112,7 +110,7 @@ async function mintNft(name: string, imagePath: string, chain: ChainOption) {
   const imageUri = await uploadToIPFS(imagePath);
   const metadataUri = await generateMetadata(name, imageUri);
 
-  // Simulate Anoma mint (replace with real client when ready)
+  // 🚫 Anoma CLI YERİNE — SİMÜLASYON
   console.log(`\n🪙 Simulating mint on ${chain.name}...`);
   console.log(`🖼️  Image: ${imageUri}`);
   console.log(`📄 Meta: ${metadataUri}`);
